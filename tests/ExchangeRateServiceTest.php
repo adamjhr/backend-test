@@ -21,6 +21,10 @@ class ExchangeRateServiceTest extends TestCase {
         $this->assertContains('EUR', $currencies, 'Expected EUR to be a supported currency');
         $this->assertContains('DKK', $currencies, 'Expected DKK to be a supported currency');
         $this->assertContains('CAD', $currencies, 'Expected CAD to be a supported currency');
+        $this->assertContains('BTC', $currencies, 'Expected BTC to be a supported currency');
+        $this->assertContains('LTC', $currencies, 'Expected LTC to be a supported currency');
+        $this->assertContains('ETH', $currencies, 'Expected ETH to be a supported currency');
+        $this->assertContains('DOGE', $currencies, 'Expected ETH to be a supported currency');
     }
 
     /**
@@ -50,5 +54,41 @@ class ExchangeRateServiceTest extends TestCase {
         $amount = $this->exchangeRateService->getExchangeAmount(200, 'USD', 'USD');
 
         $this->assertEquals(200, $amount);
+    }
+
+    /**
+     * @test
+     */
+    public function getExchangeAmountETHToBTCTest() {
+        $amount = $this->exchangeRateService->getExchangeAmount(1000, 'ETH', 'BTC');
+
+        $this->assertTrue(60 < $amount && $amount < 80);
+    }
+
+    /**
+     * @test
+     */
+    public function getExchangeAmountBTCToUSDTest() {
+        $amount = $this->exchangeRateService->getExchangeAmount(1, 'BTC', 'USD');
+
+        $this->assertTrue(15000 < $amount && $amount < 27000);
+    }
+
+    /**
+     * @test
+     */
+    public function getExchangeAmountDKKToETHTest() {
+        $amount = $this->exchangeRateService->getExchangeAmount(1000000, 'DKK', 'ETH');
+
+        $this->assertTrue(85 < $amount && $amount < 105);
+    }
+
+    /**
+     * @test
+     */
+    public function getExchangeAmountDOGEToEURTest() {
+        $amount = $this->exchangeRateService->getExchangeAmount(1000, 'DOGE', 'EUR');
+
+        $this->assertTrue(55 < $amount && $amount < 90);
     }
 }
