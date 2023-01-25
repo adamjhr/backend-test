@@ -13,7 +13,7 @@ class ExchangeRateService {
         $this->apiList = array (
             // I ran out of free API calls
             //new ApiLayerExchangeRateApi("ApiLayerExchangeRateApi", ""), // <--- this is the API i was asked to use
-            new AlternativeExchangeRateApi("AlternativeExchangeRateApi - Fiat", "e7a80c7acc1d9d821a885c21"),
+            new AlternativeExchangeRateApi("AlternativeExchangeRateApi - Fiat", ""),
             //new CoinApi("CoinApi", ""),
             new CoinGateApi("CoinGateApi - Crypto", "")
         );
